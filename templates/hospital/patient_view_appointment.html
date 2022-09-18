@@ -1,0 +1,104 @@
+{% extends 'hospital/patient_base.html' %}
+{% block content %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+</head>
+
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item">
+      <a class="nav-link  collapsed" href="/patient-dashboard">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+
+    <li class="nav-item">
+      <a class="nav-link " href="/patient-appointment">
+        <i class="bi bi-calendar2-check"></i>
+        <span>Appointment</span>
+      </a>
+    </li><!-- End Contact Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/patient-view-doctor">
+        <i class="bi bi-person-badge"></i>
+        <span>Doctor</span>
+      </a>
+    </li><!-- End Register Page Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="/patient-discharge">
+        <i class="bi bi-box-arrow-left"></i>
+        <span>Discharge</span>
+      </a>
+    </li><!-- End Login Page Nav -->
+  </ul>
+
+</aside><!-- End Sidebar-->
+
+<main id="main" class="main">
+
+  <div class="pagetitle">
+    <h1>Appointment</h1>
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">View Appointment</li>
+      </ol>
+    </nav>
+  </div><!-- End Page Title -->
+  <br>
+  
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h6 class="panel-title">Your Appointments</h6>
+    </div>
+    <table class="table table-hover" id="dev-table">
+      <thead>
+        <tr>
+          <th>Doctor Name</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      {% for a in appointments %}
+      <tr>
+        <td> {{a.doctorName}}</td>
+        <td>{{a.description}}</td>
+        <td>{{a.appointmentDate}}</td>
+        {%if a.status%}
+        <td> <span class="label label-primary">Confirmed</span></td>
+        {% else %}
+        <td> <span class="label label-success">Pending</span></td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+ 
+
+{% endblock content %}
